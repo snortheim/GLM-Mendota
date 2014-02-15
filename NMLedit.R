@@ -17,8 +17,9 @@
 NMLedit<- function(filename, parName, newVal, comment.char= "!", output= FALSE){
   
   #check if the stringr package is installed;load
-  
-  require(stringr)
+  if (!require("stringr")){
+    install.packages("stringr")
+    require("stringr")}
   
   #read in the file contents
   text<- readLines(filename, warn= FALSE)
