@@ -27,10 +27,10 @@
 ! min_z =  0.0, 0.0,    0.0,    1.0,  0.0,  0.0,   0.,  0.,  0.
 ! max_z = 30.0, 1, 800.0, 1800.0, 20.0, 28.0, 130., 10.,  5.
 !
-  title = 'Temperature', 'Salinity','DO','Green','Diatom','Crypto','NO3','PO4','NH4'
-  vars  = 'temp','salt','aed_oxygen_oxy','aed_phytoplankton_green','aed_phytoplankton_diatom','aed_phytoplankton_crypto','aed_nitrogen_nit','aed_phosphorus_frp','aed_nitrogen_amm'
-  min_z =  0.0, 0.0,   0.0,   0.0,   0.0,  0.0,   0., 0., 0.
-  max_z = 30.0, 1, 500.0, 50.0, 50.0, 5.0, 100., 0.1., 5
+  title = 'Temperature', 'DO','Microcystis','Aphanizomenon','Chlorophytes','Diatom','NO3','PO4','NH4'
+  vars  = 'temp', 'aed_oxygen_oxy','aed_phytoplankton_micro','aed_phytoplankton_aphan','aed_phytoplankton_chloro','aed_phytoplankton_diatom','aed_nitrogen_nit','aed_phosphorus_frp','aed_nitrogen_amm'
+  min_z =  0.0,   0.0,   0.0,   0.0,  0.0,  0.0, 0., 0., 0.
+  max_z = 30.0, 500.0, 150.0, 400.0, 100.0, 100, 120, 15, 200
 /
 
 !-----------------------------------------------------------

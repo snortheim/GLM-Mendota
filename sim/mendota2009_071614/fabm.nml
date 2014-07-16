@@ -19,21 +19,21 @@
 
 !-------------------------------------------------------------------------------
 &aed_oxygen
-   oxy_initial = 225.0
-   Fsed_oxy = -50.0
-   Ksed_oxy = 50.0
-   theta_sed_oxy = 1.05
+   oxy_initial = 388.4
+   Fsed_oxy = -16.362766
+   Ksed_oxy = 48.071481
+   theta_sed_oxy = 1.074341
 /
 
 !-------------------------------------------------------------------------------
 &aed_carbon
    !-- DIC and pH
-   dic_initial = 1600.5
+   dic_initial = 3600
    Fsed_dic = 3.0
    Ksed_dic = 20.0
    theta_sed_dic = 1.08
-   pH_initial = 7.5
-   atmco2 = 370e-6
+   pH_initial = 8.4
+   atmco2 = 0.000400
    ionic = 0.1
    !-- CH4
    ch4_initial = 27.6
@@ -48,28 +48,28 @@
 
 !-------------------------------------------------------------------------------
 &aed_silica
-   rsi_initial = 12.5
-   Fsed_rsi = 1.8
-   Ksed_rsi = 50.0
+   rsi_initial = 190
+   Fsed_rsi = 0.6
+   Ksed_rsi = 150
    theta_sed_rsi = 1.08
    silica_reactant_variable='aed_oxygen_oxy'
 /
 
 !-------------------------------------------------------------------------------
 &aed_nitrogen
-   amm_initial = 2.5
-   nit_initial = 27.6
-   Rnitrif = 0.1
-   Rdenit = 0.5
-   Fsed_amm = 3.0
-   Fsed_nit = -0.5
-   Knitrif = 78.1
-   Kdenit = 2.0
-   Ksed_amm = 20.0
-   Ksed_nit = 100.0
-   theta_nitrif = 1.08
-   theta_denit = 1.08
-   theta_sed_amm = 1.08
+   amm_initial = 5
+   nit_initial = 100
+   Rnitrif = 0.12283626759881
+   Rdenit = 0.0685409616193728
+   Fsed_amm = 22.9350157365566
+   Fsed_nit = -8.565
+   Knitrif = 46.875
+   Kdenit = 16.9823380358863
+   Ksed_amm = 67.0493519639359
+   Ksed_nit = 1562.5
+   theta_nitrif = 1.11513804151427
+   theta_denit = 1.09250108811239
+   theta_sed_amm = 1.11537590260918
    theta_sed_nit = 1.08
    nitrif_reactant_variable='aed_oxygen_oxy'
    denit_product_variable=''  !'aed_nitrogen_N20'
@@ -77,19 +77,19 @@
 
 !-------------------------------------------------------------------------------
 &aed_phosphorus
-   frp_initial = 0.09
-   Fsed_frp = 0.008
-   Ksed_frp = 50.0
-   theta_sed_frp = 1.08
-   phosphorus_reactant_variable = '' !'aed_oxygen_oxy'
+   frp_initial = 1
+   Fsed_frp = 0.4438986
+   Ksed_frp = 67.1594326
+   theta_sed_frp = 1.0624266
+   phosphorus_reactant_variable = 'aed_oxygen_oxy'
    simPO4Adsorption = .true.
    ads_use_external_tss = .true.
-   po4sorption_target_variable =''
+   po4sorption_target_variable = ''
    PO4AdsorptionModel = 1
    Kpo4p = 0.1
    ads_use_pH = .false.
-   Kadsratio= 1.0
-   Qmax = 1.0
+   Kadsratio= 0.7
+   Qmax = 0.00016
    w_po4ads = -1.2   ! doesnt seem to work
 /
 
@@ -98,28 +98,28 @@
    !-- ORGANIC NITROGEN
    pon_initial = 50.0
    don_initial = 50.0
-   w_pon = -0.01
-   Rpon_miner = 0.01
+   w_pon = -0.1238
+   Rpon_miner = 0.035
    Rdon_miner = 0.01
    Fsed_pon = -0.01
-   Fsed_don = 5.0
-   Kpon_miner = 31.25
-   Kdon_miner = 31.25
+   Fsed_don = 0
+   Kpon_miner = 62.5
+   Kdon_miner = 62.5
    Ksed_don = 4.5
    theta_pon_miner = 1.08
    theta_don_miner = 1.08
    theta_sed_don = 1.08
-   don_miner_product_variable='aed_nitrogen_amm'
+   don_miner_product_variable= 'aed_nitrogen_amm'
    !-- ORGANIC PHOSPHORUS
    pop_initial = 1.0
    dop_initial = 1.0
-   w_pop = -0.01
-   Rpop_miner = 0.001
-   Rdop_miner = 0.0001
+   w_pop = -0.1238
+   Rpop_miner = 0.03
+   Rdop_miner = 0.01
    Fsed_pop = -0.01
-   Fsed_dop = -900.0
-   Kpop_miner = 31.25
-   Kdop_miner = 31.25
+   Fsed_dop = 0
+   Kpop_miner = 62.5
+   Kdop_miner = 62.5
    Ksed_dop = 40.5
    theta_pop_miner = 1.08
    theta_dop_miner = 1.08
@@ -127,15 +127,15 @@
    dop_miner_product_variable='aed_phosphorus_frp'
    !-- ORGANIC CARBON
    poc_initial = 80.0
-   doc_initial = 80.0
-   w_poc = -0.01
-   Rpoc_miner = 0.01
+   doc_initial = 400
+   w_poc = -0.1238
+   Rpoc_miner = 0.07
    Rdoc_miner = 0.01
    Fsed_poc = 0.00
-   Fsed_doc = 10.0
-   Kpoc_miner = 31.25
-   Kdoc_miner = 31.25
-   Ksed_doc = 4.5
+   Fsed_doc = 0.00
+   Kpoc_miner = 62.5
+   Kdoc_miner = 62.5
+   Ksed_doc = 15.626
    theta_poc_miner = 1.08
    theta_doc_miner = 1.08
    theta_sed_doc = 1.08
@@ -147,8 +147,8 @@
 
 !-------------------------------------------------------------------------------
 &aed_phytoplankton
-   num_phytos = 3
-   the_phytos = 3,7,8
+   num_phytos = 4
+   the_phytos = 1,2,3,4
    p_excretion_target_variable='aed_organic_matter_dop'
    n_excretion_target_variable='aed_organic_matter_don'
    c_excretion_target_variable='aed_organic_matter_doc'
@@ -227,16 +227,16 @@
          'aed_nitrogen_amm',
          'aed_organic_matter_don',
          'aed_organic_matter_don',
-         'aed_phytoplankton_green_IN'
+         'aed_phytoplankton_aphan_IN'
    TP =  'aed_phosphorus_frp',
          'aed_phosphorus_frp_ads',
          'aed_organic_matter_dop',
          'aed_organic_matter_dop',
-         'aed_phytoplankton_green_IP'
+         'aed_phytoplankton_aphan_IP'
    TOC = 'aed_organic_matter_doc',
          'aed_organic_matter_poc',
-         'aed_phytoplankton_green'
-   TSS = 'aed_phytoplankton_green' !, .... 
-   turbidity = 0.1,0.1            !,  <vector same length as TSS names>
+         'aed_phytoplankton_aphan'
+   TSS = 'aed_phytoplankton_aphan' !, .... 
+   turbidity = 0.1            	!,  <vector same length as TSS names>
 /
 

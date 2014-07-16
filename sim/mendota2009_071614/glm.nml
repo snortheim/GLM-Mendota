@@ -26,15 +26,14 @@
    max_layer_thick = 1.0
    !max_layer_thick = 0.900
    Kw = 1.0268
-   coef_inf_entrain = 0.
-   coef_mix_conv = 0.21
-   coef_wind_stir = 0.23      
-   coef_mix_shear = 0.25      
-   coef_mix_turb = 0.51       
-   coef_mix_KH = 0.30 
-   coef_mix_hyp = 0.5  !default is 0.5
+   coef_inf_entrain = 0.0
+   coef_mix_conv = 0.23428615
+   coef_wind_stir =0.23
+   coef_mix_shear = 0.28004395
+   coef_mix_turb =0.46
+   coef_mix_KH = 0.41207075
+   coef_mix_hyp =0.45
 /
-
 !-------------------------------------------------------------------------------
 ! fabm setup
 !-------------------------------------------------------------------------------
@@ -76,7 +75,6 @@
    fabm_nml_file = 'fabm.nml'
    multi_ben = .true.  !fluxes from sediments, P
 /
-
 !-------------------------------------------------------------------------------
 ! lake details
 !-------------------------------------------------------------------------------
@@ -107,23 +105,17 @@
    lake_name  = 'Mendota'
    latitude   = 43
    longitude  = -89
-   base_elev  = 375.01
-   crest_elev = 400
+   base_elev  = 375.0 !was 375.01
+   crest_elev = 400.0 !
    bsn_len    = 3.9581e+07
    bsn_wid    = 1.9791e+07
    bsn_vals   = 15
    !   H(m)  A(m2 * 1000) V(m3 * 1000)
-   H = 375.00640,376.79166,378.57691,380.36217,382.14743,383.93269,
-   385.71794,387.50320,389.28846,391.07371,392.85897,394.64423,
-   396.42949,398.21474,400.00000
-   A = 0.00000,2827.22639,5654.45279,8481.67918,11308.90558,14136.13197,
-   16963.35837,19790.58476,22617.81116,25445.03755,28272.26395,31099.49034,
-   33926.71674,36753.94313,39581.16952
+   H = 375.00640,376.79166,378.57691,380.36217,382.14743,383.93269, 385.71794,387.50320,389.28846,391.07371,392.85897,394.64423, 396.42949,398.21474,400.00000
+   A = 0.00000,2827.22639,5654.45279,8481.67918,11308.90558,14136.13197, 16963.35837,19790.58476,22617.81116,25445.03755,28272.26395,31099.49034, 33926.71674,36753.94313,39581.16952
 !  V =   0.00,  429.40,  878.93, 1349.92, 1843.66, 2361.12, 2904.88,
 !     3479.20, 4083.62, 4731.87, 5426.98, 6154.28, 6913.38, 7713.56 !V values NOT FROM MENDOTA
-
 /
-
 !-------------------------------------------------------------------------------
 ! duration of run
 !-------------------------------------------------------------------------------
@@ -150,15 +142,14 @@
 !-------------------------------------------------------------------------------
 &time
    timefmt = 2
-   start = '2011-04-03 00:00:00'
+   start = '2009-04-15 00:00:00'
    !stop = '2012-01-14 00:00:00'
-   stop = '2012-01-14 23:00:00'
+   stop = '2009-12-29 23:00:00'
    dt = 3600.0
-   num_days=280
-   !num_days=730
+   !num_days=280
+   num_days=2000
    !num_days=20
 /
-
 !-------------------------------------------------------------------------------
 ! format for output and filename(s)
 !-------------------------------------------------------------------------------
@@ -189,32 +180,14 @@
    out_dir = '.'
    out_fn = 'output'
    out_lkn = .true.
-   nsave = 1
-
+   nsave = 12
    csv_point_nlevs = 2
    csv_point_fname = 'WQ_'
-   csv_point_at = 1., 2.
+   csv_point_at = 1.0, 2.0,
    csv_point_nvars = 16
-   csv_point_vars = 'temp',
-                    'salt',
-                    'aed_oxygen_oxy',
-                    'aed_silica_rsi',
-                    'aed_nitrogen_amm',
-                    'aed_nitrogen_nit',
-                    'aed_phosphorus_frp',
-                    'aed_organic_matter_don',
-                    'aed_organic_matter_pon',
-                    'aed_organic_matter_dop',
-                    'aed_organic_matter_pop',
-                    'aed_organic_matter_doc',
-                    'aed_organic_matter_poc',
-                    'aed_phytoplankton_green',
-                    'aed_phytoplankton_crypto',
-                    'aed_phytoplankton_diatom'
-
+   csv_point_vars = 'temp', 'salt', 'aed_oxygen_oxy', 'aed_silica_rsi', 'aed_nitrogen_amm', 'aed_nitrogen_nit', 'aed_phosphorus_frp', 'aed_organic_matter_don', 'aed_organic_matter_pon', 'aed_organic_matter_dop', 'aed_organic_matter_pop', 'aed_organic_matter_doc', 'aed_organic_matter_poc', 'aed_phytoplankton_green', 'aed_phytoplankton_crypto', 'aed_phytoplankton_diatom'
    csv_lake_fname = 'lake'
 /
-
 !-------------------------------------------------------------------------------
 ! initial condition profiles
 !-------------------------------------------------------------------------------
@@ -232,24 +205,26 @@
 &init_profiles
     num_depths = 6
     the_depths = 0.0, 4.0, 8.0, 12.0, 16.0, 20.0
-    the_temps  = 3.0, 4.0, 4.0, 4.0, 4.0, 4.0
+    the_temps  = 5.1, 5.0, 4.9, 4.9, 4.8, 4.8
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
-    lake_depth = 25
-    num_wq_vars = 4
+    lake_depth = 24.55
+    num_wq_vars = 7
     wq_names =  'aed_nitrogen_nit'
 				'aed_nitrogen_amm'
 				'aed_phosphorus_frp'
 				'aed_carbon_dic'
 				'aed_organic_matter_doc'
-    wq_init_vals = 	0.06531049, 0.06473947, 0.06475732, 0.06477516, 0.06479300, 0.06481085
-					0.002069950, 0.001570307, 0.001641685, 0.001713062, 0.001784440, 0.001855817
-					0.001905069, 0.001840491, 0.001856635, 0.001872780, 0.001888925, 0.001905069
-					3.613238968, 3.525395504, 3.518734388, 3.589508743, 3.714404663, 3.648626145
-					0.353039134, 0.329725229, 0.335553705, 0.336386345, 0.340549542, 0.349708576
-					
-					
+				'aed_oxygen_oxy'
+				'aed_silica_rsi'
+	wq_init_vals = 	124.19700, 104.21128, 105.63883, 105.63883, 105.63883,  34.97502
+					7.994290, 6.638116, 6.423983, 5.567452, 6.709493, 1.784440
+					4.2945, 4.3268, 4.2945, 4.1330, 4.2299, 3.6487
+					4023.314, 4014.988, 4054.954, 4178.740, 4302.526, 4426.311
+					409.6586, 397.1690, 396.3364, 417.1524, 418.8177, 416.3197
+					396.875, 393.750, 396.875, 412.500, 425.000, 425.000
+					190.1337, 181.9444, 180.8763, 190.8458, 186.2171, 185.8610
+		
 /
-
 !-------------------------------------------------------------------------------
 ! meteorology
 !-------------------------------------------------------------------------------
@@ -272,14 +247,13 @@
    rain_sw    = .false.
    snow_sw    = .true.
    atm_stab   = .true.
-   meteo_fl   = 'Mendota_hourly_new.csv'
-   wind_factor = 1.0 !1.0 default
-   ce         = 0.0013
-   ch         = 0.0014 !0.0014 default
-   coef_wind_drag = 0.0012  !0.0017 predicted value
+   meteo_fl   = 'Mendota_hourly.txt'
+   wind_factor = 1.01865095
+   ce = 0.0013
+   ch = 0.0014
+   coef_wind_drag = 0.0012026
    subdaily = .true.
 /
-
 !-------------------------------------------------------------------------------
 ! inflows 
 !-------------------------------------------------------------------------------
@@ -301,31 +275,14 @@
 &inflow
    num_inflows    = 3
    names_of_strms = 'Yahara','Pheasant','SpringHarbor'    
-   strm_hf_angle  = 65.0         
-   strmbd_slope   = 0.11      
-   strmbd_drag    = 0.0160       
-   inflow_factor  = 1.6
+   strm_hf_angle  = 20.0, 20.0, 20.0      !65.0,65.0,65.0         
+   strmbd_slope   = 1.0, 1.0, 1.0         !3.0,3.0,3.0      
+   strmbd_drag    = 0.0160,0.0160,0.0160       
+   inflow_factor  = 1.0,1.0,1.0
    inflow_fl      = 'Mendota_yahara.csv','Mendota_pheasant.csv','Mendota_springharbor.csv'
-   inflow_varnum  = 17
-   inflow_vars    = 'FLOW',
-                    'TEMP',
-                    'SALT',
-                    'aed_oxygen_oxy',
-                    'aed_silica_rsi',
-                    'aed_nitrogen_amm',
-                    'aed_nitrogen_nit',
-                    'aed_phosphorus_frp',
-                    'aed_organic_matter_don',
-                    'aed_organic_matter_pon',
-                    'aed_organic_matter_dop',
-                    'aed_organic_matter_pop',
-                    'aed_organic_matter_doc',
-                    'aed_organic_matter_poc',
-                    'aed_phytoplankton_green',
-                    'aed_phytoplankton_crypto',
-                    'aed_phytoplankton_diatom'
+   inflow_varnum  = 8
+   inflow_vars    = 'flow', 'temp', 'salt', 'aed_phosphorus_frp', 'aed_organic_matter_pop', 'aed_organic_matter_don', 'aed_nitrogen_nit', 'aed_nitrogen_amm'      
 /
-
 !-------------------------------------------------------------------------------
 ! outflows
 !-------------------------------------------------------------------------------
@@ -344,5 +301,7 @@
    bsn_len_outl = 799
    bsn_wid_outl = 398
    outflow_fl   = 'outflow.csv'
-   outflow_factor = 1.0
+   outflow_factor = 1.19
 /
+
+
